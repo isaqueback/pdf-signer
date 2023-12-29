@@ -24,11 +24,10 @@ function work() {
     .sign(inputPdf, signer)
     // signedPdf é o pdf assinado digitalmente em forma de Buffer
     .then(function (signedPdf: Buffer) {
-      const outputPdfPath = path.join(
-        __dirname,
-        'test-assets',
-        'signed-pdf.pdf',
-      )
+      const currentTimeInMs = new Date().getTime().toString()
+      const outputPdfName = `${currentTimeInMs}-signed-pdf.pdf`
+
+      const outputPdfPath = path.join(__dirname, 'test-assets', outputPdfName)
       // Criar o pdf assinado digitalmente
       writeFileSync(outputPdfPath, signedPdf)
     })
